@@ -1,11 +1,25 @@
-    class Dollar {
-       int amount = 10;
-       Dollar(int amount) {}			
-       void times(int multiplier) {}
-    }	
-
-    public void testMultiplication() {
-       Dollar five = new Dollar(5);
-       five.times(2);
-       assertEquals(10, five.amount);
+class Money {
+    protected int amount;
+    public boolean equals(Object object) {
+        Money money = (Money) object;
+        return amount == money.amount;
     }
+}
+
+class Dollar extends Money {
+    Dollar(int amount) {
+        this.amount = amount;
+    }
+    Money times(int multiplier) {
+        return new Dollar(amount * multiplier);
+    }
+}
+
+class Franc extends Money {
+    Franc(int amount) {
+        this.amount = amount;
+    }
+    Money times(int multiplier) {
+        return new Franc(amount * multiplier);
+    }
+}
